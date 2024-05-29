@@ -1,0 +1,68 @@
+enable_modelarts: 0
+
+# Url for modelarts
+data_url: ""
+train_url: ""
+checkpoint_url: ""
+output_path: "/cache/train"
+
+# train datasets
+dataset_path: '/path/to/original_fg_few005/train'
+pure_path: '/path/to/only_fg_few005/train'
+ori_path: '/path/to/original_few005/train'
+train_image_size: 224
+interpolation: 'BILINEAR'
+crop_min: 0.05
+batch_size: 128
+train_num_workers: 6
+
+# eval datasets
+eval_path: '/path/to/original_fg_few005/val'
+eval_image_size: 224
+eval_batch_size: 128
+eval_interval: 1
+eval_offset: -1
+eval_num_workers: 6
+
+# network
+backbone: 'vit_base_patch32_lam'
+class_num: 9
+vit_config_path: 'src.vit.VitConfig'
+
+# lr
+# LP: large lr, 10 epochs
+lr_decay_mode: 'constant'
+lr_init: 0.0
+lr_max: 0.005
+lr_min: 0.0
+max_epoch: 10
+warmup_epochs: 0
+freeze_backbone: 1
+pretrained: "/path/to/vit_ascend_v180_imagenet2012_official_cv_acc73.81.ckpt"
+
+# optimizer
+opt: 'adamw'
+beta1: 0.9
+beta2: 0.999
+weight_decay: 0.05
+no_weight_decay_filter: "beta,bias"
+train_filter: "head_new"
+gc_flag: 0
+
+# loss
+loss_scale: 1024
+use_label_smooth: 1
+label_smooth_factor: 0.1
+mixup: 0
+autoaugment: 0 # No need autoaugment policy for short finetune
+loss_name: "ce_simple"
+
+# ckpt
+save_checkpoint: 1
+save_checkpoint_epochs: 10
+keep_checkpoint_max: 3
+save_checkpoint_path: './outputs_lam'
+best_checkpoint_path: './best_lam'
+
+# profiler
+open_profiler: 0
