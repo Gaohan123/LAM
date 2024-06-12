@@ -4,7 +4,7 @@
 
 This repository contains the PyTorch implementation of the paper *Consistency Regularization for Domain Generalization with Logit Attribution Matching*, accepted at UAI 2024.
 
-Here, you will find code to execute ERM training, ERM with Copy-Paste augmentation, and LAM (Logit Attribution Matching) training with Copy-Paste augmentation on the [iWildCam2020-WILDS dataset (iWildCam)](https://arxiv.org/abs/2012.07421).
+Here, you will find code to execute ERM training, ERM with Copy-Paste augmentation, and LAM (Logit Attribution Matching) training with Copy-Paste augmentation on the iWildCam2020-WILDS dataset (iWildCam)
 
 We have incorporated parts of the code for Copy-Paste augmentation from the [Targeted Augmentation project](https://github.com/i-gao/targeted-augs), and data handling code from the [WILDS repository](https://github.com/p-lambda/wilds).
 
