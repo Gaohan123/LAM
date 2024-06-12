@@ -1,0 +1,35 @@
+# configuration for LAM
+inherit:
+  - model_setting.yaml
+  - datasets_iwildcam.yaml
+
+#************************
+lp_epochs: &lp_epochs 0
+ft_epochs: &ft_epochs 15
+ft_continue_epochs: &ft_continue_epochs 5
+#************************
+batch_size: 64  # 128 for ERM
+batch_size_ft: 12  # 128 for ERM
+
+#************************
+
+seed: 3
+lam_item:  5
+
+linear_probe: True
+pair_aug: False
+
+model:
+  classname: src.models.pretrain_model.Model
+  args:
+    model_name: 'resnet50'
+
+lp_scheduler:
+  classname: torch.optim.lr_scheduler.CosineAnnealingLR
+  args:
+    T_max: *lp_epochs
+
+ft_scheduler:
+  classname: torch.optim.lr_scheduler.CosineAnnealingLR
+  args:
+    T_max: *ft_epochs

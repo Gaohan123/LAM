@@ -1,0 +1,45 @@
+
+
+# The train and test transforms are taken according to the paper of LP-FT
+train_dataset:
+    name: 'iwildcam'
+    num_classes: 182
+    classname: src.datasets.iwildcam.IWILDCAM
+    transforms:
+        - classname: src.datasets.transforms.Resize
+          args:
+              size: [448,448]
+        - classname: torchvision.transforms.ToTensor
+
+default_test_transforms:
+    - classname: src.datasets.transforms.Resize
+      args:
+          size: [448,448]
+    - classname: torchvision.transforms.ToTensor
+
+val_datasets:
+    - name: 'val_id'
+      classname: src.datasets.iwildcam.IWILDCAM
+      args:
+          root: 'iwildcam_v2.0_split'
+          split: 'id_val'
+    - name: 'val_ood'
+      classname: src.datasets.iwildcam.IWILDCAM
+      args:
+          root: 'iwildcam_v2.0_split'
+          split: 'val'
+
+test_datasets:
+    - name: 'test_id'
+      classname: src.datasets.iwildcam.IWILDCAM
+      args:
+          root: 'iwildcam_v2.0_split'
+          split: 'id_test'
+    - name: 'test_ood'
+      classname: src.datasets.iwildcam.IWILDCAM
+      args:
+          root: 'iwildcam_v2.0_split'
+          split: 'test'
+
+early_stop_dataset_names:
+    - 'val_id'

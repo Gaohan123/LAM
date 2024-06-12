@@ -1,0 +1,27 @@
+# Configuration for general model setting
+log_interval: 5000
+use_cuda: True
+#*****************
+device_id: 0
+#*****************
+save_freq: 1001
+batch_size: 64
+num_workers: 4
+save_all_checkpoints: False
+
+lp_optimizer:
+  classname: torch.optim.SGD
+  args:
+    lr: 0.03
+
+
+ft_optimizer:
+  classname: torch.optim.Adam
+  args:
+    lr: 3.490455181206744e-05
+
+
+criterion:
+  classname: torch.nn.CrossEntropyLoss
+  args:
+    reduction: mean
