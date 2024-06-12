@@ -2,17 +2,17 @@
 
 ## Introduction
 
-This repository is the PyTorch implementation of <em> Consistency Regularization for Domain Generalization with Logit Attribution Matching </em>, which is accepted by UAI 2024.
+This repository contains the PyTorch implementation of the paper *Consistency Regularization for Domain Generalization with Logit Attribution Matching*, accepted at UAI 2024.
 
-The codes are released to re-implement the ERM training, ERM training with Copy-Paste augmented examples, and LAM training with Copy-Paste augmented examples on the iWildCam2020-WILDS (iWildCam) dataset.
+Here, you will find code to execute ERM training, ERM with Copy-Paste augmentation, and LAM (Logit Attribution Matching) training with Copy-Paste augmentation on the [iWildCam2020-WILDS dataset (iWildCam)](https://arxiv.org/abs/2012.07421).
 
-Part of the codes related to the Copy-Paste augmentation were adopted from the released codes of [Targeted Augmentation](https://github.com/i-gao/targeted-augs), and the data-related codes were adopted from [WILDS](https://github.com/p-lambda/wilds).
+We have incorporated parts of the code for Copy-Paste augmentation from the [Targeted Augmentation project](https://github.com/i-gao/targeted-augs), and data handling code from the [WILDS repository](https://github.com/p-lambda/wilds).
 
 ## Dataset
 
-The iWildCam dataset, including the split of the dataset, and the segmentation masks and bounding boxes for the training images (which are used in Copy-Paste augmentation), are available in this [iwildcam_data.zip]().
+The iWildCam dataset, which includes dataset splits, segmentation masks, and bounding boxes essential for the Copy-Paste augmentation, can be downloaded from this link: [iwildcam_data.zip]().
 
-After downloading it, please unzip it.
+Please download and extract the contents to retrieve the `iwildcam_data` folder.
 
 ## Code
 To install dependencies, run
@@ -51,10 +51,10 @@ python train_lam_cp.py \
 
 The result on the ID and OOD testing set  is shown below.
 | Model    | ID Macro F1 score | OOD Macro F1 score | Model Checkpoint    |
-|----------|----------------------|-----------------------------|
-| ERM      |                |                     |
-| ERM+DA   |         |                        |
-| LAM      |                |                        |
+|----------|----------------------|-----------------------------|----------|
+| ERM      |                |                     ||
+| ERM+DA   |         |                        ||
+| LAM      |                |                        ||
 
 ## Citation
 If this codebase / these models are useful in your work, please consider citing our paper.
