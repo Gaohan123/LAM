@@ -10,7 +10,7 @@ We have incorporated parts of the code for Copy-Paste augmentation from the [Tar
 
 ## Dataset
 
-The iWildCam dataset, which includes dataset splits, segmentation masks, and bounding boxes essential for the Copy-Paste augmentation, can be downloaded from this link: [iwildcam_data.zip]().
+The iWildCam dataset, which includes dataset splits, segmentation masks, and bounding boxes essential for the Copy-Paste augmentation, can be downloaded from this link: [iwildcam_data.zip](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/EUZoLIp5ZHtPhJ67X3F0hw0BdN-pZ1OWmT3FlBaOfwDUbA?e=wfKf4H).
 
 Please download and extract the contents to retrieve the `iwildcam_data` folder.
 
@@ -52,9 +52,9 @@ python train_lam_cp.py \
 The result on the ID and OOD testing set  is shown below.
 | Model    | ID Macro F1 score | OOD Macro F1 score | Model Checkpoint    |
 |----------|----------------------|-----------------------------|----------|
-| ERM      |                |                     ||
-| ERM+DA   |         |                        ||
-| LAM      |                |                        ||
+| ERM      |     48.4           |   30.4                  | [ERM](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/ETidGoFRpn5IkHv_AIJhzNoBZnmezfwKG1MFF6Ygb7kfCA?e=Qfw1cC)|
+| ERM+DA   |     53.8   |          36.0              |[ERM+DA](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/EeY6_sF4I75Hvy6L3QMMxgEBIZbZhop10gG75YNOK-aUNQ?e=KrN7BW)|
+| LAM      |     52.8          |   41.5                   |[LAM](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/EcO6ybPmm-ZPo49ZyupogEkBRvfNnbWk2coBxyPburPVxA?e=UEyOcp)|
 
 ## Citation
 If this codebase / these models are useful in your work, please consider citing our paper.
