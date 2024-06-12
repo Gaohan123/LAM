@@ -63,23 +63,23 @@ def update_test_transform_args_configs(config):
             val_dataset_config['transforms'] = config['default_test_transforms']
 
 
-def update_root_prefix(config):
-    # Go through test datasets, and train dataset. If root_prefix specified, then prepend that
+def update_root_dir(config):
+    # Go through test datasets, and train dataset. If root_dir specified, then prepend that
     # to the root.
-    def apply_root_prefix(dataset_config, root_prefix):
+    def apply_root_dir(dataset_config, root_dir):
         for key in ['root', 'cache_path', 'pickle_file_path']:
             if key in dataset_config['args']:
                 orig_path = dataset_config['args'][key]
                 logging.info('orig_path %s', orig_path)
-                dataset_config['args'][key] = root_prefix + '/' + orig_path
+                dataset_config['args'][key] = root_dir + '/' + orig_path
 
-    if 'root_prefix' in config:
-        root_prefix = config['root_prefix']
-        logging.info("Adding root prefix %s to all roots.", root_prefix)
+    if 'root_dir' in config:
+        root_dir = config['root_dir']
+        logging.info("Adding root prefix %s to all roots.", root_dir)
         for val_dataset_config in config['val_datasets']:
-            apply_root_prefix(val_dataset_config, root_prefix)
+            apply_root_dir(val_dataset_config, root_dir)
         for test_dataset_config in config['test_datasets']:
-            apply_root_prefix(test_dataset_config, root_prefix)
+            apply_root_dir(test_dataset_config, root_dir)
 
 
 def set_random_seed(seed):
@@ -96,10 +96,10 @@ def preprocess_config(config, config_path):
         # we use that and not the default transform.
         update_test_transform_args_configs(config)
         # Datasets may be stored in different directories in different clusters and platforms.
-        # We allow specifying a root_prefix that gets prepended to any specified dataset roots.
-        # So if config['root_prefix'] is defined then we prepend it to dataset['args']['root'] for
+        # We allow specifying a root_dir that gets prepended to any specified dataset roots.
+        # So if config['root_dir'] is defined then we prepend it to dataset['args']['root'] for
         # train and test datasets.
-        update_root_prefix(config)
+        update_root_dir(config)
         # # Note: copying config over is not that useful anymore with Quinine, so use json below.
         # shutil.copy(args.config, log_dir+'/original_config.yaml')
         # If no_augmentation option in config, then use test_transforms for training.

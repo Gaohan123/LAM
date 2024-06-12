@@ -126,8 +126,8 @@ def main(args,config, log_dir, checkpoints_dir):
     dataset.empty_indices = dataset.empty_indices['train']
     root_dir=args.root_dir
     data_dir=str(root_dir)+'/'+'iwildcam_v2.0/'
-    mask_dir = os.path.join(root_dir, 'instance_masks')
-    bbox_path = os.path.join(root_dir, 'megadetector_results.json')
+    mask_dir = os.path.join(data_dir, 'instance_masks')
+    bbox_path = os.path.join(data_dir, 'megadetector_results.json')
     bbox_df = pd.DataFrame(json.load(open(bbox_path, 'r'))['images']).set_index('id')
     df = pd.read_csv(data_dir+ 'metadata.csv')
     img_ids = df['image_id']
@@ -313,10 +313,6 @@ def setup():
                         help='Log directory', required=True)
     parser.add_argument('--root_dir', type=str, metavar='ld',
                         help='Root dir for iWildCam dataset', required=True)
-    parser.add_argument('--root_prefix', type=str, metavar='ld',
-                        help='Root prefix for iWildCam split dataset', required=True)
-    parser.add_argument('--env_home', type=str, metavar='ld',
-                        help='Environment home', required=True)
     parser.add_argument('--gpu_id', type=int, default=0,
                         help='GPU to be used.')
     parser.add_argument('--tmp_par_ckp_dir', type=str,
@@ -328,7 +324,7 @@ def setup():
 
 
     args, unparsed = parser.parse_known_args()
-    os.environ["HOME"] = args.env_home
+    os.environ["HOME"] = os.getcwd()
     # Choose the GPU to use.
     os.environ["CUDA_VISIBLE_DEVICES"]=str(args.gpu_id)
     # Make log and checkpoint directories.
@@ -350,12 +346,12 @@ def setup():
     # Open config, update with command line args
     if args.config.endswith('.json'):
         # For json files, we just use it directly and don't process it, e.g. by adding
-        # root_prefix. Use this for loading saved configurations.
+        # root_dir. Use this for loading saved configurations.
         with open(args.config) as json_file:
             config = json.load(json_file)
     else:
         config = quinine.Quinfig(args.config)
-    config['root_prefix']=args.root_prefix
+    config['root_dir']=args.root_dir
     # Update config with command line arguments.
     utils.update_config(unparsed, config)
     # This makes specifying certain things more convenient, e.g. don't have to specify a

@@ -268,8 +268,9 @@ class IWildCamDataset(WILDSDataset):
             return None
 
     def initialize_masks_bboxes(self, root_dir, download):
-        mask_dir = os.path.join(root_dir, 'instance_masks')
-        bbox_file = os.path.join(root_dir, 'megadetector_results.json')
+
+        mask_dir = os.path.join(root_dir+'/iwildcam_v2.0/', 'instance_masks')
+        bbox_file = os.path.join(root_dir+'/iwildcam_v2.0/', 'megadetector_results.json')
 
 
         if not os.path.exists(mask_dir) or not os.path.exists(bbox_file):
