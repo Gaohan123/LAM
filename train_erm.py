@@ -122,19 +122,6 @@ def main(args,config, log_dir, checkpoints_dir):
             [transforms.Resize((448, 448)), transforms.ToTensor()]
         ),)
     grouper = CombinatorialGrouper(dataset, ['location'])
-    ## Define the location of segmentation masks and empty background image for iWildCam
-    dataset.empty_indices = dataset.empty_indices['train']
-    root_dir=args.root_dir
-    data_dir=str(root_dir)+'/'+'iwildcam_v2.0/'
-    mask_dir = os.path.join(data_dir, 'instance_masks')
-    bbox_path = os.path.join(data_dir, 'megadetector_results.json')
-    bbox_df = pd.DataFrame(json.load(open(bbox_path, 'r'))['images']).set_index('id')
-    df = pd.read_csv(data_dir+ 'metadata.csv')
-    img_ids = df['image_id']
-    bbox_img_ids=list(bbox_df.index)
-    mask_img_ids=[]
-    for i in os.listdir(mask_dir):
-        mask_img_ids.append(i.split('.')[0])
 
     # Set up image loaders.
     train_loader = get_train_loader("standard", train_data, batch_size=config['batch_size'],uniform_over_groups=False,grouper=grouper,n_groups_per_batch=2)

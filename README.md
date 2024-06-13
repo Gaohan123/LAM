@@ -52,9 +52,20 @@ python train_lam_cp.py \
 The result on the ID and OOD testing set  is shown below.
 | Model    | ID Macro F1 score | OOD Macro F1 score | Model Checkpoint    |
 |----------|----------------------|-----------------------------|----------|
-| ERM      |     48.4           |   30.4                  | [ERM](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/ETidGoFRpn5IkHv_AIJhzNoBZnmezfwKG1MFF6Ygb7kfCA?e=Qfw1cC)|
+| ERM      |     48.1           |   30.0                  | [ERM](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/ETidGoFRpn5IkHv_AIJhzNoBZnmezfwKG1MFF6Ygb7kfCA?e=Qfw1cC)|
 | ERM+DA   |     53.8   |          36.0              |[ERM+DA](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/EeY6_sF4I75Hvy6L3QMMxgEBIZbZhop10gG75YNOK-aUNQ?e=KrN7BW)|
-| LAM      |     52.8          |   41.5                   |[LAM](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/EcO6ybPmm-ZPo49ZyupogEkBRvfNnbWk2coBxyPburPVxA?e=UEyOcp)|
+| LAM      |     52.6          |   42.3                  |[LAM](https://hkustconnect-my.sharepoint.com/:u:/g/personal/wxieai_connect_ust_hk/EcO6ybPmm-ZPo49ZyupogEkBRvfNnbWk2coBxyPburPVxA?e=UEyOcp)|
+
+### Evaluation
+```bash
+python evaluation.py \
+--config=configs/lam_wildcam.yaml \
+--log_dir=evaluation_log \
+--root_dir=iwildcam_data\
+--gpu_id=0\
+--checkpoint_path=lam_checkpoints/ERM
+```
+
 
 ## Citation
 If this codebase / these models are useful in your work, please consider citing our paper.
